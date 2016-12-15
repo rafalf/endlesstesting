@@ -1,7 +1,8 @@
 ### Install reporting ( local installation ):
-* cd ./confs/ and npm install ( if link no. 1 aint working fine for you, use the command from no. 2)
-(1 - protractor-jasmine2-html-reporter)[https://www.npmjs.com/package/protractor-jasmine2-html-reporter]
-(2 - protractor-jasmine2-html-reporter)[https://www.npmjs.com/package/protractor-jasmine2-screenshot-reporter/tutorial]
+* cd ./confs/ and npm install command from the links below:
+( if link no. 1 aint working fine for you, use the command from no. 2)
+[1 - protractor-jasmine2-html-reporter](https://www.npmjs.com/package/protractor-jasmine2-html-reporter)
+[2 - protractor-jasmine2-html-reporter](https://www.npmjs.com/package/protractor-jasmine2-screenshot-reporter/tutorial)
 
 ## Run:
 * drop tests.json in: __utils__ folder
@@ -10,7 +11,7 @@
 * run __protractor conf.js__
 
 When tests are finished, it'll generate a html report for you.
-If there are any failures, the screesnhots are saved
+If there are any failures, the page screenhots are saved.
 
 
 
