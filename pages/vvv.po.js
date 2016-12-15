@@ -34,20 +34,36 @@ var vvvPage = function (){
         return $('[title="Click para activar paquete"]');
     };
 
+    this.getAllContratarButtons = function() {
+        return $$('[title="Click para Contratar paquete"]');
+    };
+
     /*
-    Activar modal functions
+    Activar & Contratat modal functions
      */
 
     this.getActivarButton = function() {
         return $('[value="Activar"]');
     };
 
+    this.getContratarButton = function() {
+        return $('[value="Contratar"]');
+    };
+
     this.getCancelarButton = function() {
         return $('[value="Cancelar"]');
     };
 
+    this.getEntendidoButton = function() {
+        return $('[title="Entendido"]');
+    };
+
     this.getModalHeader = function() {
         return $('.modal-dialog h1');
+        };
+
+    this.getModalClose = function() {
+        return $('.i-fvv-modal__btn-close');
         };
 
 };
