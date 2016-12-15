@@ -14,8 +14,8 @@ describe('testing vvv page', function() {
          cable VVV = false
          */
 
-        var test = rjs.test1url;
-        browser.get(test);
+        var testUrl = rjs.test1url;
+        browser.get(testUrl);
 
         // nombreUsario
         expect(vvv.getAllUserLabels().count()).toBe(0);
@@ -44,10 +44,8 @@ describe('testing vvv page', function() {
          cable VVV = true
          */
 
-        // read json data
-        var test = rjs.test2url;
-
-        browser.get(test);
+        var testUrl = rjs.test2url;
+        browser.get(testUrl);
 
         // nombreUsario = not null
         expect(vvv.getAllUserLabels().count()).toBe(1);
@@ -99,91 +97,12 @@ describe('testing vvv page', function() {
          Cancelar and Acivar button
          */
 
-        buttons = vvv.getAllContratarButtons();
-        buttons.first().click();
-
-        // modal displays
-        expect(vvv.getAllModals().count()).toBe(1);
-
-        // verify header
-        var header = vvv.getModalHeader().getText();
-        expect(header).toBe(rjs.contratarModal1Header)
-
-        // click cancel and modal closes
-        vvv.getCancelarButton().click();
-        expect(vvv.getAllModals().count()).toBe(0);
-
-        buttons.first().click();
-
-        // modal displays
-        expect(vvv.getAllModals().count()).toBe(1);
-
-        vvv.getContratarButton().click();
-
-        // success displays
-        var success = vvv.getModalHeader().getText();
-        expect(success).toBe(rjs.successModalText)
-
-        // close Modal
-        vvv.getModalClose().click()
-        expect(vvv.getAllModals().count()).toBe(0);
-
-        // again all the way to success
-        // close w/ Entendido button
-        buttons.first().click();
-        expect(header).toBe(rjs.contratarModal1Header)
-        vvv.getContratarButton().click();
-        expect(success).toBe(rjs.successModalText)
-
-        vvv.getEntendidoButton().click()
-        expect(vvv.getAllModals().count()).toBe(0);
+        testConratarEmail(rjs.contratarModal1Header, 1);
 
         /* Paquete ServicioX1
          Cancelar and Acivar button
          */
-
-        buttons = vvv.getAllContratarButtons();
-        buttons.last().click();
-
-        // modal displays
-        expect(vvv.getAllModals().count()).toBe(1);
-
-        // verify header
-        var header = vvv.getModalHeader().getText();
-        expect(header).toBe(rjs.contratarModal2Header)
-
-        // click cancel and modal closes
-        vvv.getCancelarButton().click();
-        expect(vvv.getAllModals().count()).toBe(0);
-
-        buttons.last().click();
-
-        // verify header
-        expect(header).toBe(rjs.contratarModal2Header)
-
-        // modal displays
-        expect(vvv.getAllModals().count()).toBe(1);
-
-        vvv.getContratarButton().click();
-
-        // success displays
-        var success = vvv.getModalHeader().getText();
-        expect(success).toBe(rjs.successModalText)
-
-        // close Modal
-        vvv.getModalClose().click()
-        expect(vvv.getAllModals().count()).toBe(0);
-
-        // again all the way to success
-        // close w/ Entendido button
-        buttons.last().click();
-        expect(header).toBe(rjs.contratarModal2Header)
-        vvv.getContratarButton().click();
-        expect(success).toBe(rjs.successModalText)
-
-        vvv.getEntendidoButton().click()
-        expect(vvv.getAllModals().count()).toBe(0);
-
+        testConratarEmail(rjs.contratarModal2Header, 2);
 
     });
 
@@ -191,13 +110,78 @@ describe('testing vvv page', function() {
 
     it('test case 5', function() {
 
-        var test = rjs.test5url;
-        browser.get(test);
+        var testUrl = rjs.test5url;
+        browser.get(testUrl);
 
         // activadioServicio = true
         expect(vvv.getAllOnlineButtons().count()).toBe(1);
 
-
     });
+
+
+    /*
+    modal functions
+     */
+
+    function testConratarEmail(contratarHeader, index) {
+
+        buttons = vvv.getAllContratarButtons();
+
+        if (index === 1) {
+            buttons.first().click();
+        } else {
+            buttons.last().click();
+        }
+
+        // modal displays
+        expect(vvv.getAllModals().count()).toBe(1);
+
+        // verify header
+        var header = vvv.getModalHeader().getText();
+        expect(header).toBe(contratarHeader)
+
+        // click cancel, modal closes
+        vvv.getCancelarButton().click();
+        expect(vvv.getAllModals().count()).toBe(0);
+
+        if (index === 1) {
+            buttons.first().click();
+        } else {
+            buttons.last().click();
+        }
+
+        // verify header
+        expect(header).toBe(contratarHeader)
+
+        // modal displays
+        expect(vvv.getAllModals().count()).toBe(1);
+
+        vvv.getContratarButton().click();
+
+        // success displays
+        var success = vvv.getModalHeader().getText();
+        expect(success).toBe(rjs.successModalText)
+
+        // close modal
+        vvv.getModalClose().click()
+        expect(vvv.getAllModals().count()).toBe(0);
+
+        // again all the way to success
+        // but close w/ Entendido button
+
+        if (index === 1) {
+            buttons.first().click();
+        } else {
+            buttons.last().click();
+        }
+
+        expect(header).toBe(contratarHeader)
+        vvv.getContratarButton().click();
+        expect(success).toBe(rjs.successModalText)
+
+        vvv.getEntendidoButton().click()
+        expect(vvv.getAllModals().count()).toBe(0);
+
+    };
 
 });
