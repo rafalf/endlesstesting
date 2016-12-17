@@ -1,4 +1,5 @@
 .idea
 confs/node_modules/*
-utils/tests.json
+utils/vvv.json
+utils/fibra.json
 

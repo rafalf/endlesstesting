@@ -3,7 +3,11 @@ var Jasmine2HtmlReporter = require('protractor-jasmine2-html-reporter');
 exports.config = {
 
     seleniumAddress: 'http://localhost:4444/wd/hub',
-    specs: ['../tests/vvv.spec.js'],
+    specs: [
+        // '../tests/fibra.spec.js'
+        // '../tests/vvv.spec.js'
+        '../tests/*.spec.js'
+    ],
 
     // browser
     capabilities: {

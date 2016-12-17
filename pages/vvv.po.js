@@ -92,18 +92,6 @@ var vvvPage = function (){
         return $('[value="Contratar"]');
     };
 
-    this.getGuardarButton = function() {
-        return $('[value="Guardar"]');
-    };
-
-    this.getCancelarButton = function() {
-        return $('[value="Cancelar"]');
-    };
-
-    this.getEntendidoButton = function() {
-        return $('[title="Entendido"]');
-    };
-
     this.getModalHeader = function() {
         return $('.modal-dialog h1');
         };

@@ -1,9 +1,8 @@
-describe('testing vvv page', function() {
+describe('vvv page', function() {
 
-    var main = require('../pages/main.po.js');
     var vvv  = require('../pages/vvv.po.js');
-    var rjs  = require('../utils/tests.json');
-
+    var page = require('../pages/page.po.js')
+    var rjs  = require('../utils/vvv.json');
 
     it('test case 1', function() {
 
@@ -274,7 +273,7 @@ describe('testing vvv page', function() {
         expect(header).toBe(contratarHeader)
 
         // close
-        vvv.getCancelarButton().click();
+        page.getCancelarButton().click();
         expect(vvv.getAllModals().count()).toBe(0);
 
         if (index === 1) {
@@ -312,7 +311,7 @@ describe('testing vvv page', function() {
         vvv.getContratarButton().click();
         expect(success).toBe(rjs.successModalText);
 
-        vvv.getEntendidoButton().click();
+        page.getEntendidoButton().click();
         expect(vvv.getAllModals().count()).toBe(0);
 
     };
@@ -335,7 +334,7 @@ describe('testing vvv page', function() {
         expect(header).toBe(contratarHeader);
 
         //  close
-        vvv.getCancelarButton().click();
+        page.getCancelarButton().click();
         expect(vvv.getAllModals().count()).toBe(0);
 
         if (index === 1) {
@@ -362,7 +361,7 @@ describe('testing vvv page', function() {
         expect(success).toBe(rjs.successModalText);
 
         // close
-        vvv.getEntendidoButton().click();
+        page.getEntendidoButton().click();
         expect(vvv.getAllModals().count()).toBe(0);
 
     };
@@ -379,7 +378,7 @@ describe('testing vvv page', function() {
         expect(header).toBe(rjs.vvvZ3OnlineModalHeading)
 
         // close
-        vvv.getCancelarButton().click();
+        page.getCancelarButton().click();
         expect(vvv.getAllModals().count()).toBe(0);
 
         vvv.getActivarAhoraButton().click();
@@ -409,7 +408,7 @@ describe('testing vvv page', function() {
         expect(header).toBe(rjs.vvvZ3OnlineModalHeading)
 
         // click cancel and modal closes
-        vvv.getCancelarButton().click();
+        page.getCancelarButton().click();
         expect(vvv.getAllModals().count()).toBe(0);
 
         vvv.getActivarAhoraButton().click();
@@ -444,7 +443,7 @@ describe('testing vvv page', function() {
         expect(header).toBe(rjs.desactivarModalHeading)
 
         // close
-        vvv.getCancelarButton().click();
+        page.getCancelarButton().click();
         expect(vvv.getAllModals().count()).toBe(0);
 
         vvv.getDesactivarServiceButton().click();
@@ -457,7 +456,7 @@ describe('testing vvv page', function() {
         expect(header).toBe(rjs.successModalText);
 
         // close
-        vvv.getEntendidoButton().click();
+        page.getEntendidoButton().click();
         expect(vvv.getAllModals().count()).toBe(0);
 
     };
@@ -472,24 +471,24 @@ describe('testing vvv page', function() {
         expect(header).toBe(rjs.cambiaModalHeading)
 
         // disabled
-        expect(vvv.getGuardarButton().getAttribute('disabled')).toBeTruthy();
+        expect(page.getGuardarButton().getAttribute('disabled')).toBeTruthy();
 
         testEmailValidation();
 
-        vvv.getGuardarButton().click();
+        page.getGuardarButton().click();
 
         var success = vvv.getModalHeader().getText();
         expect(success).toBe(rjs.successModalText)
 
         // close
-        vvv.getEntendidoButton().click();
+        page.getEntendidoButton().click();
         expect(vvv.getAllModals().count()).toBe(0);
 
         // pencil
         vvv.getPencilButton().click();
 
         // close
-        vvv.getCancelarButton().click();
+        page.getCancelarButton().click();
         expect(vvv.getAllModals().count()).toBe(0);
 
     };
