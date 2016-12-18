@@ -1,10 +1,10 @@
-describe('vvv page', function() {
+describe('vvv test page', function() {
 
     var vvv  = require('../pages/vvv.po.js');
     var page = require('../pages/page.po.js')
     var rjs  = require('../utils/vvv.json');
 
-    it('test case 1', function() {
+    it('vvv test case 1', function() {
 
         /*
          nombreUsario = Null
@@ -42,7 +42,7 @@ describe('vvv page', function() {
 
     });
 
-    it('test case 2', function() {
+    it('vvv test case 2', function() {
 
         /*
          nombreUsario = not null
@@ -86,7 +86,7 @@ describe('vvv page', function() {
 
     });
 
-    it('test case 3', function() {
+    it('vvv test case 3', function() {
 
         /*
          nombreUsario = null
@@ -123,7 +123,7 @@ describe('vvv page', function() {
 
     });
 
-    it('test case 4', function() {
+    it('vvv test case 4', function() {
 
         /*
          nombreUsario = not null
@@ -163,7 +163,7 @@ describe('vvv page', function() {
 
     });
 
-    it('test case 5', function() {
+    it('vvv test case 5', function() {
 
         /*
          nombreUsario = not null
@@ -191,6 +191,9 @@ describe('vvv page', function() {
         expect(vvv.getAllServiceHeadingsText()).toContain(rjs.serviceH3text4);
 
         expect(vvv.getAllServices().count()).toEqual(5);
+
+        paquete = [rjs.serviceH4text1, rjs.serviceH4text2, rjs.serviceH4text1, rjs.serviceH4text2]
+        expect(vvv.getAllPaqueteServices().getText()).toEqual(paquete)
 
         testConratarNombreUsuarioNotNull(rjs.contratarModal1Heading, 1);
 

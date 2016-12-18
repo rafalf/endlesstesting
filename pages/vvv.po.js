@@ -32,6 +32,10 @@ var vvvPage = function (){
         return $$('.mvc-mv');
     };
 
+    this.getAllPaqueteServices = function() {
+        return $$('.mvc-mv h4');
+    };
+
     this.getAllServiceHeadingsText = function() {
         var h3 = $$('h3');
         h3.each(function(elm){

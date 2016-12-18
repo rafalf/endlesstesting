@@ -1,10 +1,10 @@
-describe( 'fibra page', function(){
+describe( 'fibra test page', function(){
 
     var fibra  = require('../pages/fibra.po.js');
     var page = require('../pages/page.po.js');
     rjs = require("../utils/fibra.json");
 
-    it('test case 1', function(){
+    it('fibra test case 1', function(){
 
         /*
             esNeba = false
@@ -22,13 +22,17 @@ describe( 'fibra page', function(){
 
         expect(fibra.getAllVelocidadButtons().count()).toBe(1);
 
-        testPerfilesModal();
+        testPerfilesModal(false);
 
+        expect(fibra.getAllServicesInActivados().count()).toEqual(3);
+        expect(fibra.getAllServicesInDisponibles().count()).toEqual(0);
+        expect(fibra.getAllServiceButtons().count()).toEqual(3);
 
+        testRouter();
 
     });
 
-    it('test case 2', function () {
+    it('fibra test case 2', function () {
 
         /*
          esNeba = false
@@ -41,11 +45,22 @@ describe( 'fibra page', function(){
 
         console.log('\nTest url: ' + testUrl + '\nTest spec: ' + __filename + '\n');
 
+        var headings = [rjs.serviceHeading1, rjs.serviceHeading2, rjs.serviceHeading4]
+        expect(fibra.getH3HeadingsText()).toEqual(headings);
+
         expect(fibra.getAllVelocidadButtons().count()).toBe(1);
+
+        testPerfilesModal(true);
+
+        expect(fibra.getAllServicesInActivados().count()).toEqual(0);
+        expect(fibra.getAllServicesInDisponibles().count()).toEqual(3);
+        expect(fibra.getAllServiceButtons().count()).toEqual(3);
+
+        testRouter();
 
     });
 
-    it('test case 3', function(){
+    it('fibra test case 3', function(){
 
         /*
          esNeba = true
@@ -63,17 +78,27 @@ describe( 'fibra page', function(){
 
         expect(fibra.getAllVelocidadButtons().count()).toBe(0);
 
+        expect(fibra.getAllServicesInActivados().count()).toEqual(2);
+        expect(fibra.getAllServicesInDisponibles().count()).toEqual(1);
+        expect(fibra.getAllServiceButtons().count()).toEqual(3);
+
+        testRouter();
+
     });
 
-    function testPerfilesModal(){
+    function testPerfilesModal(onError){
 
         fibra.getAllVelocidadButtons().first().click();
 
         expect(fibra.getModalHeadingText()).toEqual(rjs.profilesModalHeading);
 
+        // Optimo radio
         page.getGuardarButton().click();
-
-        expect(fibra.getModalHeadingText()).toEqual(rjs.successModalHeading);
+        if (onError){
+            expect(fibra.getModalHeadingText()).toEqual(rjs.errorModalHeading);
+        }else {
+            expect(fibra.getModalHeadingText()).toEqual(rjs.successModalHeading);
+        }
 
         page.getEntendidoButton().click();
 
@@ -81,8 +106,36 @@ describe( 'fibra page', function(){
 
         page.getCancelarButton().click();
 
+        // Fast path radio
+        fibra.getAllVelocidadButtons().first().click();
+        fibra.getFastPathRadio().click();
+        page.getGuardarButton().click();
+        if (onError){
+            expect(fibra.getModalHeadingText()).toEqual(rjs.errorModalHeading);
+        }else {
+            expect(fibra.getModalHeadingText()).toEqual(rjs.successModalHeading);
+        }
+        page.getEntendidoButton().click();
 
+        // Anexo M
+        fibra.getAllVelocidadButtons().first().click();
+        fibra.getAnexoRadio().click();
+        page.getGuardarButton().click();
+        if (onError){
+            expect(fibra.getModalHeadingText()).toEqual(rjs.errorModalHeading);
+        }else {
+            expect(fibra.getModalHeadingText()).toEqual(rjs.successModalHeading);
+        }
+        page.getEntendidoButton().click();
 
+    };
+
+    function testRouter(){
+        expect(fibra.getModelRouterText()).toBe(rjs.routerTitle);
+        expect(fibra.getModelImeiText()).toBe(rjs.routerImei);
+
+        fibra.getSolicitarLink().click();
+        expect(browser.getLocationAbsUrl()).toContain('/solicitarReparacion');
     };
 
 });
