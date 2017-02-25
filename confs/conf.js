@@ -6,12 +6,15 @@ exports.config = {
     specs: [
         // '../tests/fibra.spec.js'
         // '../tests/vvv.spec.js'
-        '../tests/*.spec.js'
+        '../tests/notifs.spec.js'
+        // '../tests/*.spec.js'
     ],
 
-    // browser
     capabilities: {
-        'browserName': 'chrome'
+        'browserName': 'chrome',
+        chromeOptions: {
+            args: ['--window-size=1600,1200']
+        }
     },
 
     // Jasmine-node.

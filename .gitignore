@@ -3,4 +3,5 @@ confs/node_modules/*
 confs/reports/htmlReport.html
 utils/vvv.json
 utils/fibra.json
+utils/notifs.json
 

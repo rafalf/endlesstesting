@@ -14,6 +14,15 @@
 * again run ```cmd``` --> ```cd ./confs/```
 * run ```protractor conf.js```
 
+* to run a specific test page, in conf.js comment out all test excpet for the test that you want to execute e.g.
+</br>
+```
+        // '../tests/fibra.spec.js'
+        // '../tests/vvv.spec.js'
+        '../tests/notifs.spec.js'
+        // '../tests/*.spec.js'
+```
+
 When tests are finished, it'll generate a html report for you.
 If there are any failures, the page screenhots are saved.
 
