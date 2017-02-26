@@ -1,5 +1,7 @@
 var notifsPage = function(){
 
+    var page = require('./page.po.js')
+
     this.getH3TitlesText = function (nth) {
       return $$('.i-fvv-notifications__title').get(nth).getText();
     };
@@ -49,11 +51,31 @@ var notifsPage = function(){
     };
 
     this.getBtnNext = function () {
-        return $$('.slick-next');
+        var btn = $('.slick-next');
+        page.waitUntilElementClickable(btn);
+        return btn;
     };
 
     this.getBtnPrevius = function () {
-        return $$('.slick-prev');
+        var btn = $('.slick-prev');
+        page.waitUntilElementClickable(btn);
+        return btn;
+    };
+
+    this.getBtnPreviusClass = function () {
+        var prev =  $('.slider>button:nth-of-type(1)').getAttribute('class');
+        prev.then(function (class_) {
+            console.log('class: ' + class_)
+        });
+        return prev;
+    };
+
+    this.getBtnNextClass = function () {
+        var next =  $('.slider>button:nth-of-type(2)').getAttribute('class');
+        next.then(function (class_) {
+            console.log('class: ' + class_)
+        });
+        return next;
     };
 
     this.getAllBtnsInNotification = function (nth) {

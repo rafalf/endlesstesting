@@ -216,9 +216,30 @@ describe('notifs test page', function() {
             expect(notifs.getAllPointersUp().count()).toBe(3);
         });
 
-        it('should click next and prev on the carousel', function() {
+        it('should click next and prev on the carousel works', function() {
+
+            expect(notifs.getBtnPreviusClass()).toContain('slick-disabled');
+            expect(notifs.getBtnNextClass()).not.toContain('slick-disabled');
+
             notifs.getBtnNext().click();
+
+            expect(notifs.getBtnPreviusClass()).not.toContain('slick-disabled');
+            expect(notifs.getBtnNextClass()).not.toContain('slick-disabled');
+
+            notifs.getBtnNext().click();
+
+            expect(notifs.getBtnPreviusClass()).not.toContain('slick-disabled');
+            expect(notifs.getBtnNextClass()).not.toContain('slick-disabled');
+
+            notifs.getBtnNext().click();
+
+            expect(notifs.getBtnPreviusClass()).not.toContain('slick-disabled');
+            expect(notifs.getBtnNextClass()).toContain('slick-disabled');
+
             notifs.getBtnPrevius().click();
+
+            expect(notifs.getBtnPreviusClass()).not.toContain('slick-disabled');
+            expect(notifs.getBtnNextClass()).not.toContain('slick-disabled');
         });
 
         it('should collapse all notifications', function() {
