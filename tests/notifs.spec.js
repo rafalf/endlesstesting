@@ -218,6 +218,7 @@ describe('notifs test page', function() {
 
         it('should click next and prev on the carousel works', function() {
 
+            notifs.waitUntilDisabledSlickButton()
             expect(notifs.getBtnPreviusClass()).toContain('slick-disabled');
             expect(notifs.getBtnNextClass()).not.toContain('slick-disabled');
 
@@ -233,6 +234,7 @@ describe('notifs test page', function() {
 
             notifs.getBtnNext().click();
 
+            notifs.waitUntilDisabledSlickButton()
             expect(notifs.getBtnPreviusClass()).not.toContain('slick-disabled');
             expect(notifs.getBtnNextClass()).toContain('slick-disabled');
 

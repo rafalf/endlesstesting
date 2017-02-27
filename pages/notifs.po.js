@@ -78,6 +78,14 @@ var notifsPage = function(){
         return next;
     };
 
+    this.getDisabledSlickButton = function () {
+        return $('.slick-disabled');
+    };
+
+    this.waitUntilDisabledSlickButton = function () {
+        page.waitUntilElementPresent(this.getDisabledSlickButton());
+    };
+
     this.getAllBtnsInNotification = function (nth) {
         return $$('.i-fvv-notifications__item:nth-of-type(' + nth + ') .i-fvv-btn');
     };
